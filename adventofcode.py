@@ -1,3 +1,8 @@
+import pandas
+# read the input
+df = pandas.read_excel(r'C:\Users\obentame\Documents\exp.xlsx', names = ['exp'], skiprows = [0], nrows = 200)
+
+# find the two entries that sum to 2020 and then multiply those two numbers together
 def sum_expense_2020(l):
     i = 0
     j = 1
@@ -14,7 +19,7 @@ def sum_expense_2020(l):
     return l[i]*l[j]
     
     
-    
+    # find the three entries that sum to 2020 and then multiply those three numbers together
     def sum_expense_3_2020(l):
     i = 0
     j = 1
@@ -35,3 +40,7 @@ def sum_expense_2020(l):
                 k = j+1
             
     return l[i]*l[j]*l[k]
+
+li = df['exp'].tolist()
+print(sum_expense_2020(li))
+print(sum_expense_3_2020(li))
