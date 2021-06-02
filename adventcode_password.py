@@ -39,4 +39,4 @@ def valid_pass_position(l):
             res = res + 1
     return res
   
- print(valid_pass_position(li))
+print(valid_pass_position(li))
