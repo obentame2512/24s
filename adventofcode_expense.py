@@ -1,6 +1,6 @@
 import pandas
 # read the input
-df = pandas.read_excel(r'C:\Users\obentame\Documents\exp.xlsx', names = ['exp'], skiprows = [0], nrows = 200)
+df = pandas.read_excel(r'C:\Users\obentame\Documents\exp.xlsx', header = None, nrows = 200)
 
 # find the two entries that sum to 2020 and then multiply those two numbers together
 def sum_expense_2020(l):
