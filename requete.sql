@@ -25,4 +25,28 @@ select product_family,
 sum(case when order_status = '04_delivered' then 1 else 0)
 from product_last_status group by product_family
 
+#Le chiffre d’affaires en euros livré par mois de livraison
+create ca as (
+with tmp as(
+    select EXTRACT(MONTH from last_order_status.event_date) as delivery_month,
+    last_order_status.event_date,
+    orders.order_id,
+    orders.currency,
+    items.amount,
+    currency.eur_value,
+    currency.start_date
+    from last_order_status join orders on last_order_status.order_id = orders.order_id
+    join items on orders.order_id = items.order_id
+    join currency on items.currency = currency.currency
+    where last_order_status.event_date > currency.start_date
+), tmp_max as(
+    select order_id, max(start_date) as start_date from tmp group by order_id)
+    select delivery_month, sum(amount * eur_value)
+    from tmp join tmp_max
+    on tmp.order_id = tmp_max.order_id and tmp.start_date = tmp_max.start_date
+    group by delivery_month
+    
+
+
+)
 
