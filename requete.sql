@@ -72,3 +72,28 @@ with tmp as(
     group by product_brand)
 )
 
+#Le chiffre d’affaires en euros livré par mois de livraison et paiement
+create ca as (
+with tmp as(
+    select EXTRACT(MONTH from order_status.event_date) as delivery_month,
+    order_status.event_date,
+    order_status.order_status,
+    orders.order_id,
+    orders.currency,
+    items.amount,
+    currency.eur_value,
+    currency.start_date
+    from order_status join orders on order_status.order_id = orders.order_id
+    join items on orders.order_id = items.order_id
+    join currency on items.currency = currency.currency
+    where last_order_status.event_date > currency.start_date and order_status.order_status in ('04_delivered', '02_authorized')
+), tmp_max as(
+    select order_id, max(start_date) as start_date from tmp group by order_id)
+    select delivery_month, sum(case when tmp.order_status = '04_delivered' then amount * eur_value else 0) as delivery_ca,
+    sum(case when tmp.order_status = '02_authorized' then amount * eur_value else 0) as payment_ca,
+    from tmp join tmp_max
+    on tmp.order_id = tmp_max.order_id and tmp.start_date = tmp_max.start_date
+    group by delivery_month)
+)
+
+
