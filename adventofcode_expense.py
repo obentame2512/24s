@@ -41,6 +41,6 @@ def sum_expense_2020(l):
             
     return l[i]*l[j]*l[k]
 
-li = df['exp'].tolist()
+li = df[0].tolist()
 print(sum_expense_2020(li))
 print(sum_expense_3_2020(li))
