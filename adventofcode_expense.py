@@ -19,8 +19,8 @@ def sum_expense_2020(l):
     return l[i]*l[j]
     
     
-    # find the three entries that sum to 2020 and then multiply those three numbers together
-    def sum_expense_3_2020(l):
+# find the three entries that sum to 2020 and then multiply those three numbers together
+def sum_expense_3_2020(l):
     i = 0
     j = 1
     k = 2
