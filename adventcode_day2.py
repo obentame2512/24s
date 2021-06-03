@@ -1,6 +1,8 @@
 import pandas
+# read input
 df = pandas.read_excel(r'C:\Users\obentame\Documents\passwords.xlsx', header = None, nrows = 1000)
 li = df[0].tolist()
+# calculate the number of valid passwords in the list l following the first rule
 def valid_pass(l):
     res = 0
     for i in l:
@@ -19,7 +21,7 @@ def valid_pass(l):
     return res
         
 print(valid_pass(li))
-
+# calculate the number of valid passwords in the list l following the second rule
 def valid_pass_position(l):
     res = 0
     for i in l:
