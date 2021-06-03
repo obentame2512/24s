@@ -1,5 +1,5 @@
 # 24s
-adventcode_day1.py : script Python du day 1 de adventofcode
+adventcode_day1.py : script Python du day 1 de adventofcode \n
 adventcode_day2.py : script Python du day 2 de adventofcode
 last_order_status.sql : requête 1 -> dernier status de chaque commande
 delivered_products_by_family.sql : requête 2 -> la répartition (en nombre de produits livrés) par famille de produit
